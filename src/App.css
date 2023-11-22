@@ -143,3 +143,8 @@ main{
     border-radius: 6px; /* roundness of the scrollbar handle */
     border: 3px solid #f1f1f1; /* border around the scrollbar handle */
   }
+
+  .two-bt{
+    background: none !important;
+    border: none !important;
+  }

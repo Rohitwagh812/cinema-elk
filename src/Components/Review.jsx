@@ -181,7 +181,7 @@ function Review () {
                               rows={3}
                               // value={usreRatings}
                               onChange={(e) => setUserRatings(e.currentTarget.value)}
-                            /> Out Of 10 </div>
+                            /> Out Of 5 </div>
                           <Button variant="primary" type="submit"  onClick={()=>{handleClick()
                             handleCloseForm() 
                           }}>
