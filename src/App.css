@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css2?family=Gabarito:wght@400;700&display=swap');
+
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Gabarito';
+    /* user-select: none; */
+}
+
+.bold{
+    font-weight: bold;
+}
+
+.post-bt{
+    background-color: #FF5722 !important;
+    border: none !important;
+    width: 30%;
+}
+
+.col-one{
+    width: 1vw;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 0.8rem;
+    height: 100%;
+}
+
+.col-one img{
+    height: 3rem;
+    cursor: pointer;
+}
+
+.col-one div{
+    margin-top: 3rem;
+    width: 10vw;
+}
+
+
+
+
+
+
+
+
+
+
+.container{
+    display:flex;
+}
+main{
+    width: 100%;
+    padding: 20px;
+}
+.sidebar{
+    background: #000;
+    color: #fff;
+    height: 100vh;
+    width: 200px;
+    transition: all 0.5s;
+}
+.top_section{
+    display: flex;
+    align-items:center;
+    padding:20px 15px;
+}
+.logo{
+    font-size: 30px;
+}
+.bars{
+    display: flex;
+    font-size: 25px;
+    margin-left: 50px;
+}
+.link{
+    display: flex;
+    color: #fff;
+    padding: 10px 15px;
+    gap: 15px;
+    transition: all 0.5s;
+}
+.link:hover{
+    background:lightskyblue;
+    color: #000;
+    transition: all 0.5s;
+}
+.active{
+    background: lightskyblue;
+    color: #000;
+}
+.icon, .link_text{
+    font-size: 20px;
+}
+
+
+.row>* {
+    width: 50% !important;
+    max-width: 100%;
+}
+
+
+.review-page{
+    position: relative; 
+    z-index: -1%;
+}
+
+.review-page::before,
+.review-page::after{
+    background-color: rgba(0, 0, 0, 0.763)
+}
+
+
+.form-page{
+    position: absolute;
+    width: 20rem;
+    padding: 20px;
+    border-radius: 16px;
+    background-color: #fff;
+    left: 30rem;
+    top: 80%;
+}
+
+.form-page-input{
+    outline: none;
+    border: none;
+}
+
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px; /* width of the entire scrollbar */
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; /* color of the track */
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: #888; /* color of the scrollbar handle */
+    border-radius: 6px; /* roundness of the scrollbar handle */
+    border: 3px solid #f1f1f1; /* border around the scrollbar handle */
+  }

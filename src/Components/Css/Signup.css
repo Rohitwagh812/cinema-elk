@@ -1,0 +1,27 @@
+.signup-page{
+    background-color: #FF5722;
+    height: 100vh;
+    color: white;
+}
+
+.login-img{
+    height: 500vh;
+}
+.bt-submit{
+    width: 80%;
+    background-color: transparent !important;
+    border: 2px solid white !important;
+    margin-top: 2rem;
+}
+
+.member-div{
+    text-align: center;
+    width: 30vw;
+    margin-top: 2rem;
+}
+
+
+.member-div a{
+    border-bottom: 1px solid white;
+    cursor: pointer;
+}

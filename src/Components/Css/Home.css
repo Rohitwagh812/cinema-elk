@@ -1,0 +1,37 @@
+.col-one{
+    width: 1vw;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 0.8rem;
+}
+
+.home-page{
+    overflow: hidden !important;
+    width: 100vw !important;
+    height: 100vh !important;
+}
+
+.col-one img{
+    height: 3rem;
+    cursor: pointer;
+}
+
+.col-one div{
+    margin-top: 3rem;
+    width: 10vw;
+}
+
+/* .col-two{
+    
+} */
+
+.card-movies{
+    border: none;
+}
+
+
+.row {
+    flex-wrap: initial !important;
+}
