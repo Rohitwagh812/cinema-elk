@@ -1,9 +1,9 @@
-import { useState } from 'react'
-import React, { useEffect } from 'react'
-import { Card, Carousel, Col, Container, Row } from 'react-bootstrap'
-import './Css/Home.css'
-import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
+import { useState } from 'react';
+import React, { useEffect } from 'react';
+import { Card, Carousel, Col, Container, Row } from 'react-bootstrap';
+import './Css/Home.css';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Top_Rated = 'https://api.themoviedb.org/3/discover/movie?api_key=d828e36455d8fbda95a32b87e746c932&language=en-US&page=1'
 

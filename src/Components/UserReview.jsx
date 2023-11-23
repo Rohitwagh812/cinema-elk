@@ -7,7 +7,7 @@ import { Card, Col, Row , Button } from 'react-bootstrap'
 import ReadMoreButton from './ReadMoreButton'
 import { useNavigate } from 'react-router-dom'
 
-const User_Review_Api = 'https://api.themoviedb.org/3/trending/person/day?api_key=d828e36455d8fbda95a32b87e746c932&en-US&page=1'
+const User_Review_Api = 'https://api.themoviedb.org/3/trending/person/day?api_key=d828e36455d8fbda95a32b87e746c932&en-US&page=10'
 
 export default function UserReview() {
 
