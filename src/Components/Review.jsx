@@ -80,7 +80,9 @@ function Review () {
 
                 movie_data : {
                  
-                  movie_img : IMAGES_API + movie.poster_path
+                  movie_img : IMAGES_API + movie.poster_path,
+
+                  movie_id : movie.id,
 
                 }
                 
@@ -172,14 +174,13 @@ function Review () {
                               rows={3}
                               as="textarea"
                               placeholder="Enter your  Review Here"
-                              // value={reviewTexts}
                               onChange={(e) => setReviewTexts(e.target.value)}
                             />
                           </Form.Group>
                           <div style={{margin:20, display:'flex', alignItems:'center'}}> Rating 
                           <Form.Control className='form-page-input y'  style={{ marginLeft:7, marginRight:7 , width:30, borderBottom:'2px solid black', padding:2 , textAlign:'center', borderRadius:'0px'}}
                               rows={3}
-                              // value={usreRatings}
+                              value={usreRatings}
                               onChange={(e) => setUserRatings(e.currentTarget.value)}
                             /> Out Of 5 </div>
                           <Button variant="primary" type="submit"  onClick={()=>{handleClick()
@@ -194,8 +195,6 @@ function Review () {
                       <Button className='post-bt' onClick={handleButtonClick}>Post Review</Button>
                     )
                   }
-                    {/* <Button className='post-bt' onClick={handleButtonClick}>Post Review</Button>
-                    {showForm && <Formpage onClose={handleCloseForm} movie={movie.id} />} */}
               </div>
                 <h5 style={{ marginTop: 10, fontWeight: 'bold' }}>Cast & crew</h5>
                 <div className="cast" style={{ marginTop: 10, display: 'flex', flexWrap: 'wrap' }}>
@@ -239,7 +238,7 @@ function Review () {
                   <div style={{ textAlign: 'center', marginTop: 50 }}>
                     <h5>This Movie Review Not Available</h5>
                   </div>
-                ) : (
+                ) :(
                   reviews.map((review, index) => (
                     <div style={{ borderBottom: 'gray 1px solid' }} key={index}>
                       <div style={{ marginTop: 10, display: 'flex', alignItems: 'center' }}>
