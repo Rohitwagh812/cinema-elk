@@ -27,11 +27,20 @@
     
 } */
 
-.card-movies{
+.card-movies-one{
     border: none;
+    /* height: 15rem; */
+    width: 10rem !important;
+    overflow: hidden !important;
+}
+
+.card-movies{
+    border: none;;
 }
 
 
 .row {
     flex-wrap: initial !important;
 }
+
+

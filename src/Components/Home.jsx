@@ -62,7 +62,7 @@ function Home() {
                      playing.map((movie , index)=>{
                       return(
                         <div key={index}>
-                          <Card onClick={()=> navigate('/review/' +  movie.id  , {state : movie})} key={movie.id} style={{height:'auto', width:"8rem", overflow:'hidden',  cursor:'pointer', marginLeft:10}} className='card-movies'>
+                          <Card onClick={()=> navigate('/review/' +  movie.id  , {state : movie})} key={movie.id} style={{height:'auto', width:"8rem", overflow:'hidden',  cursor:'pointer', marginLeft:10}} className='card-movies-one'>
                             <Card.Img style={{height:140}} variant="top" src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
                             <Card.Body>
                               <Card.Title style={{fontSize:15}}>{movie.title}</Card.Title>
@@ -85,7 +85,7 @@ function Home() {
                         <Col key={index}>
                           
                             {/* <Carousel> */}
-                              <Card onClick={()=> navigate('/review/' +  movie.id  , {state : movie})} style={{height:'auto', width:"8rem", marginLeft:10, overflow:'hidden',  cursor:'pointer'}} className='card-movies'>
+                              <Card onClick={()=> navigate('/review/' +  movie.id  , {state : movie})} style={{ width:"8rem", height:'auto', marginLeft:10, overflow:'hidden',  cursor:'pointer'}} className='card-movies-one'>
                               <Card.Img style={{height:140}} variant="top" src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
                             <Card.Body>
                               <Card.Title style={{fontSize:15}}>{movie.title}</Card.Title>
@@ -106,7 +106,7 @@ function Home() {
                      rated.map((movie , index)=>{
                       return(
                         <Col key={index}>
-                              <Card onClick={()=>navigate('/review/' +  movie.id  , {state : movie})} style={{height:'auto', marginLeft:10, width:"8rem", overflow:'hidden',  cursor:'pointer'}} className='card-movies'>
+                              <Card onClick={()=>navigate('/review/' +  movie.id  , {state : movie})} style={{height:'auto', marginLeft:10, width:"8rem", overflow:'hidden',  cursor:'pointer'}} className='card-movies-one'>
                               <Card.Img style={{height:140}} variant="top" src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
                             <Card.Body>
                               <Card.Title style={{fontSize:15}}>{movie.title}</Card.Title>
@@ -127,7 +127,7 @@ function Home() {
                      upcoming.map((movie , index)=>{
                       return(
                         <Col key={index}>
-                              <Card onClick={()=> navigate('/review/' +  movie.id  , {state : movie})} style={{height:'auto', width:"8rem", overflow:'hidden',  cursor:'pointer',marginLeft:10}} className='card-movies'>
+                              <Card onClick={()=> navigate('/review/' +  movie.id  , {state : movie})} style={{height:'auto', width:"8rem", overflow:'hidden',  cursor:'pointer',marginLeft:10}} className='card-movies-one'>
                               <Card.Img style={{height:140}} variant="top" src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
                             <Card.Body>
                               <Card.Title style={{fontSize:15}}>{movie.title}</Card.Title>

@@ -1,4 +1,4 @@
-import { deleteDoc } from 'firebase/firestore';
+import { deleteDoc, updateDoc } from 'firebase/firestore';
 import { useState, useEffect } from 'react';
 import { auth, db } from '../Firebase';
 import { collection, getDocs, addDoc, doc, onSnapshot } from 'firebase/firestore';
@@ -8,15 +8,21 @@ import ReadMoreButton from './ReadMoreButton';
 import Deletebutton from '../assets/Deletebutton.png'
 import Editbutton from '../assets/Editbutton.png'
 
+import 'ldrs/dotPulse'
+
+// Default values shown  
+
+
 export default function Profile() {
   const [user, setUser] = useState([]);
   const [datas, setDatas] = useState([]);
+  const [reviewsId, setReviewsId] = useState([]);
   const [isExpanded, setIsExpanded] = useState(false);
 
   const toggleReadMore = () => {
     setIsExpanded(!isExpanded);
   };
-
+ 
   const name = localStorage.getItem('user_name');
   // console.log(name)
   const user_profile_img = 'https://picsum.photos/200/300';
@@ -47,45 +53,63 @@ export default function Profile() {
     getAllUsers();
   }, [name]);
 
-  {
-    Array.isArray(user) && user.map((userData, index) => {
-      console.log('hello');
-    })
-  }
-
   
 
   useEffect(() => {
-    const getAllUser = async () => {
-      const collectionReferece = collection(db, 'data');
-      try {
-        const querySnapshot = await getDocs(collectionReferece);
-        const data = querySnapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        console.log('All data:', data);
-        setDatas(data);
-      } catch (error) {
-        console.error('Error getting documents:', error);
-      }
-    };
+    const unsubscribe = onSnapshot(collection(db, 'data'), (snapshot) => {
+    const data = snapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+    console.log('All data:', data);
+    setDatas(data);
+  });
 
-    getAllUser();
+  return () => unsubscribe();
   },[]);
 
-  const handleClickDeletereviews = () =>{
-    console.log('delete')
-    
-    
+  // useEffect(()=>{
+  //   datas.map((d) => {
+  //     setReviewsId(d.id)
+  //     console.log(d.id)
+  //   })
+  // },[])
+
+  
+  const handleClickDelete = async (id) => {
+    console.log('reviewsId:', id);
+    if (id) {
+      console.log('code working');
+      await deleteDoc(doc(db, 'data', id));
+      setDatas((prevData) => prevData.filter((item) => item.id !==id));
+    } else {
+      console.log('code not working');
+    }
+  
   }
 
-  const [file, setFile] = useState();
-  function handleChange(e) {
-      console.log(e.target.files);
-      setFile(URL.createObjectURL(e.target.files[0]));
-  }
+  const handleClickEdit = async (id) => {
+    console.log('hello' , id);
   
+    // const newData = {
+      
+    // };
+  
+    // if (id) {
+    //   try {
+    //     // Update the document instead of deleting it
+    //     await updateDoc(doc(db, 'data', id), newData);
+    //     setDatas((prevData) =>
+    //       prevData.map((item) => (item.id === id ? { ...item, ...newData } : item))
+    //     );
+    //     console.log('Document updated successfully');
+    //   } catch (error) {
+    //     console.error('Error updating document: ', error);
+    //   }
+    // } else {
+    //   console.log('Invalid ID for editing');
+    // }
+  };
  
 
   return (
@@ -96,12 +120,13 @@ export default function Profile() {
         datas.length === 0 ? (
           <div style={{ textAlign: 'center', marginTop: 50, fontWeight:"bold", width:'100vw' }}>
             <h4>Please Add Your Review</h4>
+            <l-dot-pulse style={{marginTop:50}}   size="90" speed="1.3" color="black"  ></l-dot-pulse>
           </div>
         ) :(
          datas.map((d, index) => {
           return(
             
-               <Card style={{ width: '30rem', height: 'auto', display: 'flex', margin: 20, padding: 10, cursor: 'pointer', overflow:'hidden' }}key={index}>
+               <Card className='user-page' style={{ width: '30rem', height: 'auto', display: 'flex', margin: 20, padding: 10, cursor: 'pointer', overflow:'hidden' }}key={index}>
                <div style={{ display: 'flex', flexWrap: 'wrap' }}>
             <div style={{ width: '20rem', padding: 5 }}>
               <div style={{ borderBottom: 'gray 2px solid', display: 'flex', alignItems: 'center' }}>
@@ -114,14 +139,14 @@ export default function Profile() {
               <Card.Text style={{ marginTop: 10 }}>User In Numbers Rating: {d.ratings}</Card.Text>
               <div>
               <Card.Text>
-                {d.review_texts.length > 30 ? (
+                {d.review_texts.length > 10 ? (
                   <div style={{display:'flex',alignItems:'center'}}>
                     <ReadMoreButton style={{width:40 , overflow:''}}  text={d.review_texts} maxLength={20} />
-                    <div style={{display:"flex", alignItems:'center', marginTop: 10}}>
+                    <div style={{display:"flex", alignItems:'center', marginTop: 40}}>
                      <Button style={{marginLeft:10}} className='two-bt'>
                       <img height={30} src={Editbutton} alt="" />
                      </Button>
-                     <Button className='two-bt'>
+                     <Button  onClick={()=>handleClickDelete(d.id)} className='two-bt'>
                       <img height={30} src={Deletebutton}  alt="" />
                      </Button>
                     </div>
@@ -132,11 +157,11 @@ export default function Profile() {
                   <div style={{display:'flex',alignItems:'center'}}>
                     <ReadMoreButton  style={{width:40}} text={d.review_texts} maxLength={50} />
                   <div style={{display:"flex", alignItems:'center', marginTop: 10}}>
-                     <Button style={{marginLeft:10}} className='two-bt'>
-                      <img height={30} src={Editbutton} alt="" />
+                     <Button  style={{marginLeft:10 ,marginTop:16}} className='two-bt'>
+                      <img height={30} onClick={()=>handleClickEdit(d.id)} src={Editbutton} alt="" />
                      </Button>
-                     <Button className='two-bt'>
-                      <img height={30} src={Deletebutton}  alt="" />
+                     <Button onClick={()=>handleClickDelete(d.id)}  style={{marginTop:16}} className='two-bt'>
+                      <img height={30} src={Deletebutton}alt="" />
                      </Button>
                     </div>
                   </div>
