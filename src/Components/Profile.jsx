@@ -5,8 +5,8 @@ import { collection, getDocs, addDoc, doc, onSnapshot } from 'firebase/firestore
 import { Button, Card } from 'react-bootstrap';
 import ReadMoreButton from './ReadMoreButton';
 
-import Deletebutton from '../assets/Deletebutton.png'
-import Editbutton from '../assets/Editbutton.png'
+import Deletebt from '../assets/.png'
+import EditBt from '../assets/Editbutton.png'
 
 import 'ldrs/dotPulse'
 
@@ -149,10 +149,10 @@ export default function Profile() {
                     <ReadMoreButton style={{width:40 , overflow:''}}  text={d.review_texts} maxLength={20} />
                     <div style={{display:"flex", alignItems:'center', marginTop: 40}}>
                      <Button onClick={()=> editbutton()} style={{marginLeft:10}} className='two-bt'>
-                      <img height={30} src={Editbutton} alt="" />
+                      <img height={30} src={EditbBt} alt="" />
                      </Button>
                      <Button  onClick={()=>handleClickDelete(d.id)} className='two-bt'>
-                      <img height={30} src={Deletebutton}  alt="" />
+                      <img height={30} src={Deletebt}  alt="" />
                      </Button>
                     </div>
                     
@@ -163,10 +163,10 @@ export default function Profile() {
                     <ReadMoreButton  style={{width:40}} text={d.review_texts} maxLength={50} />
                   <div style={{display:"flex", alignItems:'center', marginTop: 10}}>
                      <Button  style={{marginLeft:10 ,marginTop:16}} className='two-bt'>
-                      <img height={30} onClick={()=>handleClickEdit(d.id)} src={Editbutton} alt="" />
+                      <img height={30} onClick={()=>handleClickEdit(d.id)} src={EditBt} alt="" />
                      </Button>
                      <Button onClick={()=>handleClickDelete(d.id)}  style={{marginTop:16}} className='two-bt'>
-                      <img height={30} src={Deletebutton}alt="" />
+                      <img height={30} src={Deletebt}alt="" />
                      </Button>
                     </div>
                   </div>
