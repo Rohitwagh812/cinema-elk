@@ -32,7 +32,7 @@ function Login() {
   })
 
   return (
-    <div style={{ padding: 80 }} className='signup-page'>
+    <div style={{ padding: 80}} className='signup-page'>
       <Container>
         <Row>
           <Col>

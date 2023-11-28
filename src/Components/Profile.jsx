@@ -88,8 +88,13 @@ export default function Profile() {
   
   }
 
+  // const editbutton =  async () => {
+  //    alert('hello')
+  // }
+
   const handleClickEdit = async (id) => {
     console.log('hello' , id);
+    alert('this movie reaview id form user'+' '+' '+ id)
   
     // const newData = {
       
@@ -143,7 +148,7 @@ export default function Profile() {
                   <div style={{display:'flex',alignItems:'center'}}>
                     <ReadMoreButton style={{width:40 , overflow:''}}  text={d.review_texts} maxLength={20} />
                     <div style={{display:"flex", alignItems:'center', marginTop: 40}}>
-                     <Button style={{marginLeft:10}} className='two-bt'>
+                     <Button onClick={()=> editbutton()} style={{marginLeft:10}} className='two-bt'>
                       <img height={30} src={Editbutton} alt="" />
                      </Button>
                      <Button  onClick={()=>handleClickDelete(d.id)} className='two-bt'>

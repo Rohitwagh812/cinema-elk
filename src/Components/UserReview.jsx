@@ -7,7 +7,7 @@ import { Card, Col, Row , Button } from 'react-bootstrap'
 import ReadMoreButton from './ReadMoreButton'
 import { useNavigate } from 'react-router-dom'
 
-const User_Review_Api = 'https://api.themoviedb.org/3/trending/person/day?api_key=d828e36455d8fbda95a32b87e746c932&en-US&page=10'
+const User_Review_Api = 'https://api.themoviedb.org/3/trending/person/day?api_key=d828e36455d8fbda95a32b87e746c932&en-US&page=1'
 
 export default function UserReview() {
 
@@ -23,7 +23,7 @@ export default function UserReview() {
    
 
   return (
-    <div style={{width:'100vw',  padding:40, display:'flex', flexWrap:'wrap', height:'100vh', overflowY:'scroll'}}>
+    <div style={{width:'100vw',  padding:40, display:'flex', flexWrap:'wrap', justifyContent:'center', height:'100vh', overflowY:'scroll'}}>
         {
           userReview.map((item , index)=>{
             return(

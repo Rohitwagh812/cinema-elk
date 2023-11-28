@@ -5,7 +5,7 @@ import './Css/Home.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-const Top_Rated = 'https://api.themoviedb.org/3/discover/movie?api_key=d828e36455d8fbda95a32b87e746c932&language=en-US&page=1'
+const Top_Rated = 'https://api.themoviedb.org/3/discover/movie?api_key=d828e36455d8fbda95a32b87e746c932&language=en-US&page=2%27'
 
 const Now_Playing = 'https://api.themoviedb.org/3/movie/now_playing?api_key=d828e36455d8fbda95a32b87e746c932&language=en-US&page=2%27'
 
@@ -59,6 +59,11 @@ function Home() {
                 
                 <div style={{width:'97vw' , display:'flex' , overflowX:'scroll'}}>
                    {
+                    playing.length === 0 ? (
+                          <div style={{display:"flex", justifyContent:'center', width:'100vw'}}>
+                            <l-dot-pulse style={{marginTop:50}}   size="90" speed="1.3" color="black"  ></l-dot-pulse>
+                          </div>
+                    ):(
                      playing.map((movie , index)=>{
                       return(
                         <div key={index}>
@@ -71,6 +76,7 @@ function Home() {
                         </div>
                       )
                      })
+                    )  
                    }
                 </div>
               </div>
