@@ -7,32 +7,29 @@ import { useNavigate } from 'react-router-dom'
 import NameImg from '../assets/name.png'
 
 import { auth } from '../Firebase';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import {signInWithEmailAndPassword } from 'firebase/auth';
+// import { await } from 'await'
 
 function Login() {
   const navigate = useNavigate()
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  async function handleLogin() {
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCred) => {
-        console.log(userCred.user)
-        navigate('/')
-      })
-      .catch((err) => {
-        console.log(err)
-        navigate('/register')
-      });
-  }
+  const handleLogin = async (event) =>{
 
+    event.preventDefault();
 
-  useEffect(()=>{
-    console.log(auth.currentUser)
-  })
-
+    signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
+      console.log(userCredential.user)
+      navigate('/')
+    }).catch((err) => {
+      console.log(err)
+      navigate('/signup')
+    });
+    }
+  
   return (
-    <div style={{ padding: 80}} className='signup-page'>
+    <div style={{ padding: 80, width:"auto"}} className='signup-page'>
       <Container>
         <Row>
           <Col>
@@ -44,14 +41,23 @@ function Login() {
               <div style={{ display: "flex", width: '80%', flexDirection: 'row', justifyContent: 'center' }}>
                 <Form.Group style={{ width: '60%' }} className="mb-3" controlId="formBasicEmail">
                   <Form.Label>Email address</Form.Label>
-                  <Form.Control onChange={(e) => setEmail(e.currentTarget.value)} className='user-input' type="email" placeholder="Enter email" />
+                  <Form.Control onChange={(e) => setEmail(e.currentTarget.value)}
+                   className='user-input' 
+                   type="email" 
+                   placeholder="Enter email"
+                   value={email}
+                   />
                 </Form.Group>
                 <Form.Group style={{ width: '60%', marginLeft: '0.7em' }} className="mb-3" controlId="formBasicPassword">
                   <Form.Label>Password</Form.Label>
-                  <Form.Control onChange={(e) => setPassword(e.currentTarget.value)} className='user-input' type="password" placeholder="Password" />
+                  <Form.Control onChange={(e) => setPassword(e.currentTarget.value)} 
+                  className='user-input' 
+                  type="password" 
+                  placeholder="Password"
+                  value={password} />
                 </Form.Group>
               </div>
-              <Button onClick={() => handleLogin()} variant="primary" type="submit" className='bt-submit'>
+              <Button onClick={handleLogin} variant="primary" type="submit" className='bt-submit'>
                 Login Now
               </Button>
             </Form>

@@ -81,7 +81,7 @@ function App () {
           <Nav.Link onClick={()=>navigate('/user/review')}><img height={40} src={ ReviesImg }/></Nav.Link>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
            <Nav.Link onClick={()=>navigate('/profile/'+ name)}><img height={40} src={ UserImg }/></Nav.Link>
            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-           <Button style={{width:150}} onClick={handleLogout}>LogOut</Button>
+           <Button className='logout-bt' onClick={handleLogout}>LogOut</Button>
         </Nav>
        
       </Container>

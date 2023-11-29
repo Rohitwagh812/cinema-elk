@@ -51,7 +51,7 @@ function Home() {
   return (
     <div className='home-page'>
         <Row>
-          <Col className='col-two' style={{padding:30 , overflowY:'scroll' , height:'100vh'}}>
+          <Col className='col-two' style={{padding:30 , overflowY:'scroll' , height:'90vh'}}>
               <div>
               <h3 style={{marginBottom:20}}>
                   Now Playing Movies

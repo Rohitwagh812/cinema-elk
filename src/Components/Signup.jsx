@@ -15,20 +15,17 @@ const [email, setEmail] = useState('');
 const [password, setPassword] = useState('');
 
 const handleSignup = async () => {
-  try {
-    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-    console.log(userCredential);
-    // Set the item in localStorage after the user is signed up
-    localStorage.setItem('name', name);
-    console.log(localStorage.getItem('name')); // Check if the item is set
-    navigate('/');
-  } catch (error) {
-    console.error('Error during signup:', error.message);
-  }
+  createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
+    console.log(userCredential)
+    navigate('/')
+  }).catch((err) => {
+    console.log(err)
+    alert(err.message)
+  });
 };
-
+console.log(name)
 useEffect(() => {
-  console.log(auth.currentUser)
+  // console.log(auth.currentUser)
   if (auth.currentUser) {
     updateProfile(auth.currentUser, {
       displayName: localStorage.getItem('name')
