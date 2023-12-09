@@ -8,9 +8,10 @@ import ReadMoreButton from './ReadMoreButton';
 import Deletebutton from '../assets/Deletebutton.png'
 import Editbutton from '../assets/Editbutton.png'
 
+import ReactStars from "react-rating-stars-component";
+
 import 'ldrs/dotPulse'
 
-// Default values shown  
 
 
 export default function Profile() {
@@ -18,13 +19,15 @@ export default function Profile() {
   const [datas, setDatas] = useState([]);
   const [reviewsId, setReviewsId] = useState([]);
   const [isExpanded, setIsExpanded] = useState(false);
+  const [showForm, setShowForm] = useState(false);
+  const [backgroundColor, setBackgroundColor] = useState('white');
+
 
   const toggleReadMore = () => {
     setIsExpanded(!isExpanded);
   };
  
-  const name = localStorage.getItem('user_name');
-  // console.log(name)
+  const name = localStorage.getItem('name');
   const user_profile_img = 'https://picsum.photos/200/300';
 
   useEffect(() => {
@@ -51,7 +54,7 @@ export default function Profile() {
     };
 
     getAllUsers();
-  }, [name]);
+  }, []);
 
   
 
@@ -68,13 +71,6 @@ export default function Profile() {
   return () => unsubscribe();
   },[]);
 
-  // useEffect(()=>{
-  //   datas.map((d) => {
-  //     setReviewsId(d.id)
-  //     console.log(d.id)
-  //   })
-  // },[])
-
   
   const handleClickDelete = async (id) => {
     console.log('reviewsId:', id);
@@ -88,13 +84,11 @@ export default function Profile() {
   
   }
 
-  // const editbutton =  async () => {
-  //    alert('hello')
-  // }
 
-  const handleClickEdit = async (id) => {
-    console.log('hello' , id);
-    alert('this movie reaview id form user'+' '+' '+ id)
+  const handleClickEdit =  (id) => {
+    console.log('hello');
+
+
   
     // const newData = {
       
@@ -115,11 +109,31 @@ export default function Profile() {
     //   console.log('Invalid ID for editing');
     // }
   };
+
+
+   const handleButtonClick = () => {
+    
+    setShowForm(true);
+
+    setBackgroundColor('rgba(0, 0, 0, 0.763)');
+    
+  };
+
+  const handleCloseForm = () => {
+    setShowForm(false);
+    setBackgroundColor('white');
+  };
+
+
+  const ratingChanged = (newRating) => {
+    console.log(newRating);
+  };
+  
  
 
   return (
-    <div style={{ width: '99vw', padding: 30, height: '100vh', overflowY: 'scroll' }}>
-        <h2 className='text-md-center'>My Review</h2>
+    <div style={{ width: '99vw', padding: 30, height: '90vh', overflowY: 'scroll' }}>
+        <h2 className='text-md-center'>My Review</h2> <p className='text-md-center'>Your total reviews {datas.length}</p>
       <div style={{ display: 'flex', flexWrap: 'wrap' }}>
       {
         datas.length === 0 ? (
@@ -133,7 +147,7 @@ export default function Profile() {
             
                <Card className='user-page' style={{ width: '30rem', height: 'auto', display: 'flex', margin: 20, padding: 10, cursor: 'pointer', overflow:'hidden' }}key={index}>
                <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-            <div style={{ width: '20rem', padding: 5 }}>
+        <div style={{ width: '20rem', padding: 5 }}>
               <div style={{ borderBottom: 'gray 2px solid', display: 'flex', alignItems: 'center' }}>
                 <Card.Img style={{ height: 30, width: 30, borderRadius: '50%' }} src={user_profile_img} />
                 <Card.Title className='d-inline-block fw-bold ' style={{ fontSize: 20, marginLeft: 25 }}>
@@ -142,28 +156,27 @@ export default function Profile() {
               </div>
               
               <Card.Text style={{ marginTop: 10 }}>User In Numbers Rating: {d.ratings}</Card.Text>
+              
               <div>
               <Card.Text>
                 {d.review_texts.length > 10 ? (
                   <div style={{display:'flex',alignItems:'center'}}>
                     <ReadMoreButton style={{width:40 , overflow:''}}  text={d.review_texts} maxLength={20} />
                     <div style={{display:"flex", alignItems:'center', marginTop: 40}}>
-                     <Button onClick={()=> editbutton()} style={{marginLeft:10}} className='two-bt'>
+                     <Button onClick={()=>handleClickEdit(d.id)} style={{marginLeft:10}} className='two-bt'>
                       <img height={30} src={Editbutton} alt="" />
                      </Button>
                      <Button  onClick={()=>handleClickDelete(d.id)} className='two-bt'>
                       <img height={30} src={Deletebutton}  alt="" />
                      </Button>
-                    </div>
-                    
-                  
+                    </div> 
                   </div>
                 ) : (
                   <div style={{display:'flex',alignItems:'center'}}>
-                    <ReadMoreButton  style={{width:40}} text={d.review_texts} maxLength={50} />
+                    <ReadMoreButton style={{width:40}} text={d.review_texts} maxLength={50} />
                   <div style={{display:"flex", alignItems:'center', marginTop: 10}}>
-                     <Button  style={{marginLeft:10 ,marginTop:16}} className='two-bt'>
-                      <img height={30} onClick={()=>handleClickEdit(d.id)} src={Editbutton} alt="" />
+                     <Button onClick={()=>handleClickEdit(d.id)} style={{marginLeft:10 ,marginTop:16}} className='two-bt'>
+                      <img height={30}  src={Editbutton} alt="" />
                      </Button>
                      <Button onClick={()=>handleClickDelete(d.id)}  style={{marginTop:16}} className='two-bt'>
                       <img height={30} src={Deletebutton}alt="" />
@@ -178,11 +191,10 @@ export default function Profile() {
               <Card.Img width={300} height={150} src={d.movie_data.movie_img} />
             </div>
           </div>
-              </Card>
-           
-           ) 
-      })   )
-      }
+        </Card>
+          ) 
+      })   
+      )}
       </div>
 </div>
   );

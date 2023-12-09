@@ -23,9 +23,8 @@ const handleSignup = async () => {
     alert(err.message)
   });
 };
-console.log(name)
+localStorage.setItem('name', name)
 useEffect(() => {
-  // console.log(auth.currentUser)
   if (auth.currentUser) {
     updateProfile(auth.currentUser, {
       displayName: localStorage.getItem('name')

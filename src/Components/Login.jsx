@@ -29,13 +29,13 @@ function Login() {
     }
   
   return (
-    <div style={{ padding: 80, width:"auto"}} className='signup-page'>
+    <div style={{ width:"auto", display:'flex', alignItems:"center", overflow:"hidden"}} className='signup-page'>
       <Container>
         <Row>
           <Col>
             <img className='Login-img' src={LoginImg} />
           </Col>
-          <Col style={{ paddingTop: 20, marginLeft: 30 }}>
+          <Col style={{ paddingTop: 80, marginLeft: 60 }}>
             <img src={NameImg} alt="" height={70} />
             <Form style={{ marginTop: 10 }}>
               <div style={{ display: "flex", width: '80%', flexDirection: 'row', justifyContent: 'center' }}>

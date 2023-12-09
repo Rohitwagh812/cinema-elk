@@ -16,6 +16,8 @@ const user_img = 'https://picsum.photos/200/300';
 
 const IMAGES_API = 'https://image.tmdb.org/t/p/w500';
 
+import ReactStars from "react-rating-stars-component";
+
 function Review () {
   const [reviews, setReviews] = useState([]);
 
@@ -150,6 +152,7 @@ function Review () {
     setShowForm(false);
     setBackgroundColor('white');
   };
+
   return (
     <div style={{backgroundColor}}>
       
@@ -177,12 +180,13 @@ function Review () {
                               onChange={(e) => setReviewTexts(e.target.value)}
                             />
                           </Form.Group>
-                          <div style={{margin:20, display:'flex', alignItems:'center'}}> Rating 
+                          <div style={{margin:20, display:'flex', alignItems:'center'}}> Rating of Stars
                           <Form.Control className='form-page-input y'  style={{ marginLeft:7, marginRight:7 , width:30, borderBottom:'2px solid black', padding:2 , textAlign:'center', borderRadius:'0px'}}
                               rows={3}
                               value={usreRatings}
                               onChange={(e) => setUserRatings(e.currentTarget.value)}
                             /> Out Of 5 </div>
+                            
                           <Button variant="primary" type="submit"  onClick={()=>{handleClick()
                             handleCloseForm() 
                           }}>
